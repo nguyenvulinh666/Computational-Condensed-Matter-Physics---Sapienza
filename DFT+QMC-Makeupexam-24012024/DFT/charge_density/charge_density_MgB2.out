@@ -1,0 +1,51 @@
+
+     Program POST-PROC v.7.5 starts on 11Jan2026 at 15:37:35 
+
+     This program is part of the open-source Quantum ESPRESSO suite
+     for quantum simulation of materials; please cite
+         "P. Giannozzi et al., J. Phys.:Condens. Matter 21 395502 (2009);
+         "P. Giannozzi et al., J. Phys.:Condens. Matter 29 465901 (2017);
+         "P. Giannozzi et al., J. Chem. Phys. 152 154105 (2020);
+          URL http://www.quantum-espresso.org", 
+     in publications or presentations arising from this work. More details at
+     http://www.quantum-espresso.org/quote
+
+     Serial version
+     395 MiB available memory on the printing compute node when the environment starts
+
+
+     Reading xml data from directory:
+
+     ../tmp/MgB2.save/
+
+     IMPORTANT: XC functional enforced from input :
+     Exchange-correlation= PBE
+                           (   1   4   3   4   0   0   0)
+     Any further DFT definition will be discarded
+     Please, verify this is what you really want
+
+
+     G-vector sticks info
+     --------------------
+     sticks:   dense  smooth     PW     G-vecs:    dense   smooth      PW
+     Sum         847     847    253                22583    22583    3657
+
+     Using Slab Decomposition
+
+
+     Calling punch_plot, plot_num =   0
+     Writing data to file  MgB2.2d.dat
+     Reading data from file  MgB2.2d.dat
+
+     Writing data to be plotted to file MgB2.gnuplot
+     Min, Max, imaginary charge:     0.008405    3.396936    0.000000
+     Plot Type: 2D contour             Output format: gnuplot x,y,f
+
+     POST-PROC    :      0.78s CPU      0.81s WALL
+
+
+   This run was terminated on:  15:37:36  11Jan2026            
+
+=------------------------------------------------------------------------------=
+   JOB DONE.
+=------------------------------------------------------------------------------=

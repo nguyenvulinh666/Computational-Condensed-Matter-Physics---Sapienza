@@ -1,5 +1,5 @@
 
-     Program POST-PROC v.7.5 starts on 11Jan2026 at 14:34:29 
+     Program POST-PROC v.7.5 starts on 11Jan2026 at 15:22:58 
 
      This program is part of the open-source Quantum ESPRESSO suite
      for quantum simulation of materials; please cite
@@ -11,12 +11,12 @@
      http://www.quantum-espresso.org/quote
 
      Serial version
-     920 MiB available memory on the printing compute node when the environment starts
+     323 MiB available memory on the printing compute node when the environment starts
 
 
      Reading xml data from directory:
 
-     ./tmp/MgB2.save/
+     ../tmp/MgB2.save/
 
      IMPORTANT: XC functional enforced from input :
      Exchange-correlation= PBE
@@ -42,10 +42,10 @@
      Min, Max, Total, Abs charge:   0.015361  3.390942     16.0000   16.0000
      Plot Type: 3D                     Output format: XCrySDen     
 
-     POST-PROC    :      0.58s CPU      0.62s WALL
+     POST-PROC    :      0.78s CPU      0.80s WALL
 
 
-   This run was terminated on:  14:34:30  11Jan2026            
+   This run was terminated on:  15:22:59  11Jan2026            
 
 =------------------------------------------------------------------------------=
    JOB DONE.

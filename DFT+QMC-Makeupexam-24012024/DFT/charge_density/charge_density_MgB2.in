@@ -1,0 +1,34 @@
+&INPUTPP
+prefix='MgB2'
+plot_num=0
+outdir='../tmp'
+filplot='MgB2.2d.dat'
+&end
+&PLOT
+iflag = 2,
+! 2D planar plot
+output_format = 7,
+! Output format for 2D grid (gnuplot format)
+fileout = 'MgB2.gnuplot', ! File to store the plane data
+nx = 100, ny = 100,
+! Grid points in x and y (adjust as needed)
+!e1(1) = 2.0, e1(2) = 0.0, e1(3) = 0.0, ! First vector (along [100])
+!e2(1) = 0.0, e2(2) = 2.0, e2(3) = 0.0, ! Second vector (orthogonal to [010)
+!x0(1) = -1.0, x0(2) = -1.0, x0(3) = 0.0
+
+! Modify by Gemini
+! First vector: Point along Y-axis (Across the screen)
+e1(1) = 0.0,  e1(2) = 4.0,  e1(3) = 0.0, 
+
+! Second vector: Point along Z-axis (Vertical - C axis)
+! Note: Use a value slightly larger than your c lattice parameter (approx 3.5 Å or ~6.6 Bohr)
+e2(1) = 0.0,  e2(2) = 0.0,  e2(3) = 7.0,  
+
+! Origin: Start at X=0 so we slice through the Boron centers
+! Shift Y and Z to center the image
+x0(1) = 0.0,  x0(2) = -2.0, x0(3) = -0.5
+
+
+! Origin of the plane
+/
+&end

@@ -1,0 +1,6 @@
+ &BANDS                                                                
+ prefix = 'MgB2',                                                                  
+ outdir = './tmp/',                                                                     
+ filband = 'MgB2.bands.dat',                                                
+ lsym = .true.                                                                          
+ &end 

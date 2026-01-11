@@ -1,0 +1,45 @@
+# 1. Convergence test
+To do the convergence test, you need to create the file template for the crystal that you want to simulate, template.{atom_name}.in inside the template folder
+e.g
+'''
+&CONTROL
+  calculation = 'scf'
+  restart_mode = 'from_scratch'
+  outdir = './tmp'
+  pseudo_dir = './PSEUDO'
+  prefix = '${atoms}'
+  tstress = .true.
+  tprnfor = .true.
+/
+&SYSTEM
+  ibrav = 4
+  celldm(1) = 5.82603759
+  celldm(3) = 1.14206941291
+  nat = 3
+  ntyp = 2
+  ecutwfc = $ECUT
+  occupations = 'smearing', smearing='gauss', degauss=0.04,
+/
+&ELECTRONS
+  conv_thr = 1.0e-6
+/
+ATOMIC_SPECIES
+  Mg  24.305  Mg_ONCV_PBE_sr.upf
+  B   10.811  B_ONCV_PBE_sr.upf
+ATOMIC_POSITIONS crystal
+  Mg   0.0000000000  0.0000000000  0.0000000000
+  B    0.3333333333  0.6666666666  0.5000000000
+  B    0.6666666666  0.3333333333  0.5000000000
+K_POINTS automatic
+  ${ks} ${ks} ${ks} 0 0 0
+'''
+
+After that, you can use the provided bash script convergence_test_on_Ecut.sh and convergence_test_on_kmesh.sh to do the convergence test. 
+Command: 
+./convergence_test_on_Ecut.sh 'type_your_atom_name in here' 'type_your_predicted_kmesh_in_here'
+./convergence_test_on_kmesh.sh 'type_your_atom_name in here' 'type_your_predicted_Ecut_that_you_found_in_the_first_convergence_test'
+
+Note that, you should edit convergence threshold inside the template/template.plot_deltaE.py, eg. if you need to get 10meV/atom and you have 3 atom inside your primitive cell. You got threshold=10*3 = 30 meV
+
+ # 2. Density of state calculation
+You need to edit read arXiv:1004.2974v1 to check the high-symmetry path in the Brillouin zone. To prepare your corresponding 

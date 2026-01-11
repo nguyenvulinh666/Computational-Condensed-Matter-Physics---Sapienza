@@ -1,0 +1,6 @@
+ &BANDS                                                                
+ prefix = 'BeN',                                                                  
+ outdir = './tmp/',                                                                     
+ filband = 'BeN.bands.dat',                                                
+ lsym = .true.                                                                          
+ &end 

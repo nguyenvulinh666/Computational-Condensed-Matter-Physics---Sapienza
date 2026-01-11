@@ -1,0 +1,36 @@
+&CONTROL
+  calculation = 'bands'
+  restart_mode = 'from_scratch'
+  outdir = './tmp'
+  pseudo_dir = './PSEUDO'
+  prefix = 'MgB2'
+  tstress = .true.
+  tprnfor = .true.
+&end
+&SYSTEM
+  ibrav = 4
+  celldm(1) = 5.817144168
+  celldm(3) = 1.14312758
+  nat = 3
+  ntyp = 2
+  ecutwfc = 90, nbnd=16
+  occupations = 'fixed'
+&end
+&ELECTRONS
+  conv_thr = 1.0e-6
+&end
+ATOMIC_SPECIES
+  Mg  24.305  Mg_ONCV_PBE_sr.upf
+  B   10.811  B_ONCV_PBE_sr.upf
+ATOMIC_POSITIONS crystal
+  Mg   0.000000  0.000000  0.000000
+  B    0.333333  0.666666  0.500000
+  B    0.666666  0.333333  0.500000
+K_POINTS (crystal_b)
+6
+0.000000  0.000000  0.000000  40	! Gamma
+0.500000  0.000000  0.000000  40	! M
+0.333333  0.333333  0.000000  40	! K
+0.000000  0.000000  0.000000  40	! Gamma
+0.000000  0.000000  0.500000  40	! A
+0.500000  0.000000  0.500000  40	! L

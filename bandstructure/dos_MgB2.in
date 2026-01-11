@@ -1,0 +1,7 @@
+&dos
+prefix = 'MgB2',
+outdir = './tmp',
+emin = -76
+emax = 20
+DeltaE = 0.01
+&end

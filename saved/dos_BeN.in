@@ -1,0 +1,7 @@
+&dos
+prefix = 'BeN',
+outdir = './tmp',
+emin = -15
+emax = 30
+DeltaE = 0.01
+&end

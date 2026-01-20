@@ -1,0 +1,28 @@
+&CONTROL 
+   calculation = 'nscf'
+   restart_mode = 'from_scratch' 
+   prefix = 'si.cd' 
+   tstress = .true. 
+   tprnfor = .true. 
+   pseudo_dir = './PSEUDO' 
+   outdir = './tmp' 
+&end 
+&SYSTEM 
+   ibrav = 2 
+   nat = 2 
+   ntyp = 1 
+   celldm(1) = 10.3404050887 
+   ecutwfc = 80, nbnd=12 
+   occupations = 'tetrahedra' 
+&end 
+&ELECTRONS 
+   conv_thr =  1e-06 
+   mixing_beta = 0.7 
+&end 
+ATOMIC_SPECIES 
+   Si  28.0855  Si_ONCV_PBE_sr.upf
+ATOMIC_POSITIONS crystal 
+   Si    0.0    0.0    0.0    
+   Si    0.25   0.25   0.25    
+K_POINTS automatic 
+20 20 20    0  0  0  

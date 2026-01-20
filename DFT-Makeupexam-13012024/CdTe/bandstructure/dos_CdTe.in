@@ -1,0 +1,7 @@
+&dos
+prefix = 'CdTe',
+outdir = './tmp',
+emin = -30
+emax = 20
+DeltaE = 0.01
+&end

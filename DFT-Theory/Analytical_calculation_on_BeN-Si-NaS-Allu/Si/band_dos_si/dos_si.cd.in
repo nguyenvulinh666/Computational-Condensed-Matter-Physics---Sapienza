@@ -1,0 +1,7 @@
+&dos
+prefix = 'si.cd',
+outdir = './tmp',
+emin = -9
+emax = 21
+DeltaE = 0.005
+&end

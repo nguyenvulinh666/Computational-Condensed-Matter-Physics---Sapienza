@@ -1,0 +1,51 @@
+
+     Program POST-PROC v.7.5 starts on 20Dec2025 at 22:14:14 
+
+     This program is part of the open-source Quantum ESPRESSO suite
+     for quantum simulation of materials; please cite
+         "P. Giannozzi et al., J. Phys.:Condens. Matter 21 395502 (2009);
+         "P. Giannozzi et al., J. Phys.:Condens. Matter 29 465901 (2017);
+         "P. Giannozzi et al., J. Chem. Phys. 152 154105 (2020);
+          URL http://www.quantum-espresso.org", 
+     in publications or presentations arising from this work. More details at
+     http://www.quantum-espresso.org/quote
+
+     Serial version
+     3071 MiB available memory on the printing compute node when the environment starts
+
+
+     Reading xml data from directory:
+
+     ./tmp/BeNvac.save/
+
+     IMPORTANT: XC functional enforced from input :
+     Exchange-correlation= PBE
+                           (   1   4   3   4   0   0   0)
+     Any further DFT definition will be discarded
+     Please, verify this is what you really want
+
+
+     G-vector sticks info
+     --------------------
+     sticks:   dense  smooth     PW     G-vecs:    dense   smooth      PW
+     Sum        1581    1581    457                47257    47257    7249
+
+     Using Slab Decomposition
+
+
+     Calling punch_plot, plot_num =   0
+     Writing data to file  BeN_vacancy.2d.dat
+     Reading data from file  BeN_vacancy.2d.dat
+
+     Writing data to be plotted to file BeN_vacancy.gnuplot
+     Min, Max, imaginary charge:     0.006559    4.571935    0.000000
+     Plot Type: 2D contour             Output format: gnuplot x,y,f
+
+     POST-PROC    :      1.55s CPU      1.60s WALL
+
+
+   This run was terminated on:  22:14:15  20Dec2025            
+
+=------------------------------------------------------------------------------=
+   JOB DONE.
+=------------------------------------------------------------------------------=

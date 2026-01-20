@@ -1,0 +1,6 @@
+&BANDS
+prefix = '${prefix}',
+outdir = './tmp/',
+filband = '${prefix}.bands.dat',
+lsym = .true.
+&end

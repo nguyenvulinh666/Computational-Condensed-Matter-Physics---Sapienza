@@ -1,0 +1,6 @@
+ &BANDS                                                                
+ prefix = 'KB3C3',                                                                  
+ outdir = './tmp/',                                                                     
+ filband = 'KB3C3.bands.dat',                                                
+ lsym = .true.                                                                          
+ &end 

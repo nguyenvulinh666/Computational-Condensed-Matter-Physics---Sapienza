@@ -1,0 +1,12 @@
+ndim 2
+type h2 12.0
+pbc 16.25 14.07
+mu h2 -8.0
+ntau 50
+restart -1
+c0 0.02  
+temperature 20.0
+v2 h2 h2 v_h2_h2 lj 36.7 2.96
+m_bar 40
+sofk 14
+verme 100 0 100 1000 

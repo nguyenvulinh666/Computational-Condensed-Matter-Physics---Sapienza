@@ -1,0 +1,170 @@
+
+
+*******************************************************************************
+Sat Jan 10 16:54:57 2026
+
+
+FIT:    data read from 'estimate_rs.txt'u 1:2:3
+        format = x:z:s
+        x range restricted to [6.00000 : 30.0000]
+        #datapoints = 2
+function used for fitting: f(x)
+	f(x)=a*(x-beta_opt)
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             beta_opt     
+   0 9.2845858584e+11   0.00e+00  4.80e+05    1.000000e+00   1.000000e+00
+ 782 1.1151001107e+06  -1.00e+00  4.80e-02   -2.767014e-05  -3.529194e+03
+
+After 782 iterations the fit converged.
+final sum of squares of residuals : 1.1151e+06
+rel. change during last iteration : -9.99923e-06
+
+
+Exactly as many data points as there are parameters.
+In this degenerate case, all errors are zero by definition.
+
+Final set of parameters 
+======================= 
+
+a               = -2.76701e-05   
+beta_opt        = -3529.19       
+
+
+*******************************************************************************
+Sat Jan 10 16:55:45 2026
+
+
+FIT:    data read from 'estimate_rs.txt'u 1:2:3
+        format = x:z:s
+        x range restricted to [6.00000 : 30.0000]
+        #datapoints = 2
+function used for fitting: f(x)
+	f(x)=a*(x-beta_opt)
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             beta_opt     
+   0 9.2845858584e+11   0.00e+00  4.80e+05    1.000000e+00   1.000000e+00
+ 782 1.1151001107e+06  -1.00e+00  4.80e-02   -2.767014e-05  -3.529194e+03
+
+After 782 iterations the fit converged.
+final sum of squares of residuals : 1.1151e+06
+rel. change during last iteration : -9.99923e-06
+
+
+Exactly as many data points as there are parameters.
+In this degenerate case, all errors are zero by definition.
+
+Final set of parameters 
+======================= 
+
+a               = -2.76701e-05   
+beta_opt        = -3529.19       
+
+
+*******************************************************************************
+Sat Jan 10 16:56:28 2026
+
+
+FIT:    data read from 'estimate_rs.txt'u 1:2:3
+        format = x:z:s
+        x range restricted to [5.00000 : 20.0000]
+        #datapoints = 3
+function used for fitting: f(x)
+	f(x)=a*(x-beta_opt)
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             beta_opt     
+   0 9.2927552037e+11   0.00e+00  3.92e+05    1.000000e+00   1.000000e+00
+ 532 2.7170618998e+06  -3.55e-01  3.92e-02   -7.777263e-05  -1.265158e+03
+
+After 532 iterations the fit converged.
+final sum of squares of residuals : 2.71706e+06
+rel. change during last iteration : -3.55298e-06
+
+degrees of freedom    (FIT_NDF)                        : 1
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 1648.35
+variance of residuals (reduced chisquare) = WSSR/ndf   : 2.71706e+06
+p-value of the Chisq distribution (FIT_P)              : 0
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = -7.77726e-05     +/- 0.009897     (1.273e+04%)
+beta_opt        = -1265.16         +/- 1.634e+05    (1.292e+04%)
+
+correlation matrix of the fit parameters:
+                a      beta_o 
+a               1.000 
+beta_opt       -1.000  1.000 
+
+
+*******************************************************************************
+Sat Jan 10 16:56:46 2026
+
+
+FIT:    data read from 'estimate_rs.txt'u 1:2:3
+        format = x:z:s
+        x range restricted to [4.00000 : 21.0000]
+        #datapoints = 3
+function used for fitting: f(x)
+	f(x)=a*(x-beta_opt)
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             beta_opt     
+   0 9.2927552037e+11   0.00e+00  3.92e+05    1.000000e+00   1.000000e+00
+ 532 2.7170618998e+06  -3.55e-01  3.92e-02   -7.777263e-05  -1.265158e+03
+
+After 532 iterations the fit converged.
+final sum of squares of residuals : 2.71706e+06
+rel. change during last iteration : -3.55298e-06
+
+degrees of freedom    (FIT_NDF)                        : 1
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 1648.35
+variance of residuals (reduced chisquare) = WSSR/ndf   : 2.71706e+06
+p-value of the Chisq distribution (FIT_P)              : 0
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = -7.77726e-05     +/- 0.009897     (1.273e+04%)
+beta_opt        = -1265.16         +/- 1.634e+05    (1.292e+04%)
+
+correlation matrix of the fit parameters:
+                a      beta_o 
+a               1.000 
+beta_opt       -1.000  1.000 
+
+
+*******************************************************************************
+Sat Jan 10 16:58:04 2026
+
+
+FIT:    data read from 'estimate_rs.txt'u 1:2:3
+        format = x:z:s
+        x range restricted to [4.00000 : 21.0000]
+        #datapoints = 3
+function used for fitting: f(x)
+	f(x)=a*(x-beta_opt)
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             beta_opt     
+   0 9.2927552037e+11   0.00e+00  3.92e+05    1.000000e+00   1.000000e+00
+ 532 2.7170618998e+06  -3.55e-01  3.92e-02   -7.777263e-05  -1.265158e+03
+
+After 532 iterations the fit converged.
+final sum of squares of residuals : 2.71706e+06
+rel. change during last iteration : -3.55298e-06
+
+degrees of freedom    (FIT_NDF)                        : 1
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 1648.35
+variance of residuals (reduced chisquare) = WSSR/ndf   : 2.71706e+06
+p-value of the Chisq distribution (FIT_P)              : 0
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = -7.77726e-05     +/- 0.009897     (1.273e+04%)
+beta_opt        = -1265.16         +/- 1.634e+05    (1.292e+04%)
+
+correlation matrix of the fit parameters:
+                a      beta_o 
+a               1.000 
+beta_opt       -1.000  1.000 

@@ -1,0 +1,138 @@
+================================================================================
+                        COMPUTATIONAL PHYSICS EXAM CHEAT SHEET
+                       DFT (Quantum ESPRESSO) & QMC (VMC/DMC/PIMC)
+================================================================================
+
+--------------------------------------------------------------------------------
+SECTION 1: DFT & PHYSICAL CONCEPTS (VESTA & FORCES)
+--------------------------------------------------------------------------------
+
+[1] VESTA & ISOSURFACES
+    - Definition: An isosurface connects all points in 3D space with the SAME 
+      charge density value (rho).
+    - High Isovalue (e.g., 0.1): Shows only core electrons (spheres around atoms).
+    - Low Isovalue (e.g., 0.02): Shows bonding electrons.
+    - VISUAL CUES:
+      * COVALENT: Surfaces merge between atoms (forming a "neck" or bridge).
+      * IONIC: Surfaces remain separate spheres (no shared density).
+
+[2] DISPLACEMENT MATH (MOVING ATOMS)
+    If you must displace an atom by magnitude 'delta' (e.g., 0.05 * lattice_const).
+
+    CASE A: BODY DIAGONAL (Direction 1,1,1) -> Used in standard bulk tests
+       - Vector: (x, x, x)
+       - Magnitude: sqrt(3) * x * a = delta
+       - Formula: x = delta / (sqrt(3) * a)
+       - Force Direction: Will oppose displacement, pointing along (-1,-1,-1).
+
+    CASE B: FACE DIAGONAL / "SURFACE" (Direction 1,1,0)
+       - Vector: (x, x, 0)
+       - Magnitude: sqrt(2) * x * a = delta
+       - Formula: x = delta / (sqrt(2) * a)
+       - Force Direction: Points along (-1,-1,0).
+
+    *NOTE*: If calculating a surface SLAB (vacuum added), forces on the surface
+    atoms point INWARDS (relaxation) because bonds are cut.
+
+--------------------------------------------------------------------------------
+SECTION 2: QUANTUM MONTE CARLO (QMC) PARAMETER TABLE
+--------------------------------------------------------------------------------
+"Efficiency" = Speed / Error bar size.
+"Accuracy"   = Does it change the physical result (Bias)?
+
+[VMC - VARIATIONAL MONTE CARLO]
++-------------+----------------------+----------+------------+------------------------------------------+
+| Parameter   | Description          | Accuracy?| Efficiency?| Strategy                                 |
++-------------+----------------------+----------+------------+------------------------------------------+
+| dt (delt)   | Time Step            | NO       | YES        | Tune for ~50% acceptance.                |
+| nstep       | Steps per block      | NO       | YES        | Must be > Correlation Time (check statfor)|
+| nblock      | Number of blocks     | Precision| YES        | More blocks = Smaller error bars.        |
+| opt_param   | Var. Parameters      | YES      | YES        | Essential. Better param = Lower Energy.  |
+| nconfig     | Saved configurations | NO       | YES        | Save these to optimize without re-running|
++-------------+----------------------+----------+------------+------------------------------------------+
+
+[DMC - DIFFUSION MONTE CARLO]
++-------------+----------------------+----------+------------+------------------------------------------+
+| Parameter   | Description          | Accuracy?| Efficiency?| Strategy                                 |
++-------------+----------------------+----------+------------+------------------------------------------+
+| tau (delt)  | Imaginary Time Step  | YES      | YES        | MANDATORY: Run 2 steps, extrapolate to 0 |
+| nw          | Walkers (Population) | YES      | YES        | Bias ~ 1/nw. Use >1000.                  |
+| Etrial      | Ref Energy           | NO       | YES        | Bad guess = Population explosion/death.  |
++-------------+----------------------+----------+------------+------------------------------------------+
+
+[PIMC - PATH INTEGRAL MC]
++-------------+----------------------+----------+------------+------------------------------------------+
+| Parameter   | Description          | Accuracy?| Efficiency?| Strategy                                 |
++-------------+----------------------+----------+------------+------------------------------------------+
+| M (beads)   | Time Slices          | YES      | YES        | Controls epsilon=1/TM. Keep epsilon small|
+| istart      | Reset Block Index    | YES      | NO         | DISCARD initial blocks (equilibration).  |
+| mbar        | Worm update length   | NO       | YES        | Tune for ~50% acceptance.                |
+| Winding No. | Topological Number   | YES      | N/A        | Non-zero = Superfluidity.                |
++-------------+----------------------+----------+------------+------------------------------------------+
+
+--------------------------------------------------------------------------------
+SECTION 3: UNIX & DATA EXTRACTION COMMANDS
+--------------------------------------------------------------------------------
+
+[1] CHECKING CONVERGENCE (Tail)
+    $ grep "etot" worm.out | tail -n 20
+    (Checks if energy is stable at the end of the run)
+
+[2] EXTRACTING DATA FOR PLOTTING/STATFOR
+    $ grep "etot" worm.out | tail -n +51 | awk '{print $3}' > energy.dat
+    (Expl: Greps 'etot', skips first 50 lines (equilibration), prints 3rd column)
+
+[3] STATISTICAL ANALYSIS
+    $ ./statfor < energy.dat
+    (Checks mean, error, and CORRELATION TIME)
+
+[4] CHECKING ACCEPTANCE RATIO
+    $ grep "acc" output.file
+
+--------------------------------------------------------------------------------
+SECTION 4: GNUPLOT PLOTTING TEMPLATES
+--------------------------------------------------------------------------------
+
+[TEMPLATE A: LINEAR FIT (e.g., DMC Time Step Extrapolation)]
+    f(x) = a*x + b
+    fit f(x) 'dmc_data.dat' u 1:2 via a,b
+    plot 'dmc_data.dat' u 1:2:3 w yerrorbars, f(x)
+    print "Zero time-step energy is: ", b
+
+[TEMPLATE B: FINDING INTERSECTION (Liquid vs Solid)]
+    # Define two lines
+    L(x) = m1*x + c1
+    S(x) = m2*x + c2
+    # Fit
+    fit L(x) 'liquid.dat' u 1:2 via m1,c1
+    fit S(x) 'solid.dat' u 1:2 via m2,c2
+    # Plot
+    plot 'liquid.dat', L(x), 'solid.dat', S(x)
+    # Calc Intersection
+    print "Intersection at x = ", (c2-c1)/(m1-m2)
+
+--------------------------------------------------------------------------------
+SECTION 5: PYTHON PLOTTING SCRIPT (Save as plot.py)
+--------------------------------------------------------------------------------
+import matplotlib.pyplot as plt
+import numpy as np
+
+# --- EDIT DATA HERE ---
+x_data = [-0.10, -0.05, 0.00, 0.05]  # e.g., Strain or Density
+y_data = [-344.1, -344.2, -344.1, -344.0] # e.g., Energy
+
+plt.figure(figsize=(8,6))
+plt.plot(x_data, y_data, 'o-', label='Data')
+
+# Add polynomial fit (optional)
+z = np.polyfit(x_data, y_data, 2)
+p = np.poly1d(z)
+x_fit = np.linspace(min(x_data), max(x_data), 100)
+plt.plot(x_fit, p(x_fit), 'r--', label='Fit')
+
+plt.xlabel('Strain / Density')
+plt.ylabel('Energy')
+plt.legend()
+plt.grid(True)
+plt.savefig('exam_plot.png')
+print("Plot saved.")

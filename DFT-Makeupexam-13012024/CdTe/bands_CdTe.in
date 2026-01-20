@@ -1,0 +1,6 @@
+ &BANDS                                                                
+ prefix = 'CdTe',                                                                  
+ outdir = './tmp/',                                                                     
+ filband = 'CdTe.bands.dat',                                                
+ lsym = .true.                                                                          
+ &end 

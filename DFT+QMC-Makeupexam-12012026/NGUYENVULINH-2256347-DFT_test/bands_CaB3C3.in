@@ -1,0 +1,6 @@
+ &BANDS                                                                
+ prefix = 'CaB3C3',                                                                  
+ outdir = './tmp/',                                                                     
+ filband = 'CaB3C3.bands.dat',                                                
+ lsym = .true.                                                                          
+ &end 

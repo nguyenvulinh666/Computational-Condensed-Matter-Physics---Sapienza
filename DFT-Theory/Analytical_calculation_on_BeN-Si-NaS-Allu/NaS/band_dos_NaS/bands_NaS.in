@@ -1,0 +1,6 @@
+ &BANDS                                                                
+ prefix = 'NaS',                                                                  
+ outdir = './tmp/',                                                                     
+ filband = 'NaS.bands.dat',                                                
+ lsym = .true.                                                                          
+ &end 

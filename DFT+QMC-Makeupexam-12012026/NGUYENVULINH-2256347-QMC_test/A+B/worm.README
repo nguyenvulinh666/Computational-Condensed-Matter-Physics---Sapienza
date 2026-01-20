@@ -1,0 +1,232 @@
+**************************************************************
+
+In this directory you find the following files:
+
+README       # this file
+
+worm.f       # a fortran77 implementation of the Worm Algorithm
+worm.h       # a file included by worm.f at compile time
+worm.in_he   # a sample input file for Helium atoms.
+worm.in_h2   # a sample input file for molecular Hydrogen.
+
+statforw.f   # a fortran77 code to calculate **weighted** averages,
+             # autocorrelations and statistical errors.
+
+             # gnuplot command files to visualize:
+               * block and cumulative averages from file 'worm.out' of
+etot.gp           - the energy per particle
+np.gp             - the number of particles
+rhos.gp           - the superfluid fraction
+
+               * cumulative average of
+sofk.gp           - the static structure factor s(k_x,k_y)
+gofr.gp           - the (radial) pair distribution function g(r)
+
+coord.gp       * snapshot of the current configuration of the paths
+
+***********************************************************
+************** input description **************************
+***********************************************************
+
+This is the sample input for Helium
+(units are Angstrom for length and Kelvin for energy):
+-----------------------------------------------------------
+ndim 2
+type he 6.0
+pbc 15.2 13.2
+mu he 0.5
+ntau 100
+restart -1
+c0 0.02  
+temperature 2.5
+v2 he he v_he_he lj 10.22 2.556
+m_bar 45 
+sofk 14
+verme 110 10 100 1000
+-----------------------------------------------------------
+
+Each row of the input file starts with a keyword. 
+Each keyword requires a (fixed) numer of arguments, as follows:
+
+keyword ndim
+        arg. 1: space dimensionality
+
+keyword type
+        arg. 1: the name of a type of particles
+        arg. 2: the value of \hbar^2/2m for this this type
+
+keyword pbc
+        arg. 1: the side of the simulation box in direction x
+        arg. 2: the side of the simulation box in direction y
+
+keyword mu 
+        arg. 1: the name of a type of particles (as given in "type")
+        arg. 2: the chemical potential for this type
+
+keyword ntau
+        arg. 1: the number of "time" slices
+
+keyword restart
+        arg. 1: simulation starts from 16 particles in a triangular lattice (-1)
+                or from an empty cell (0) 
+                or from restart files of a previous run (1)
+
+keyword c0
+        arg. 1: a number which controls the frequency of the
+                Z sector vs the G sector (increase/decrease
+                this number to favor/hinder the G sector)
+
+keyword temperature
+        arg. 1: the temperature
+
+keyword sofk
+        arg. 1: the range to calculate the static structure 
+                factor S(k)
+
+keyword v2 (specifies the pair potential between type-i and type-j particles)
+        arg. 1 name of type-i particles
+        arg. 2 name of type-j particles
+        arg. 3 output file with the tabulated potential
+        arg. 4 keyword to specify the potential (Lennard-Jones)
+        arg. 5 parameter epsilon of the LJ potential
+        arg. 6 parameter sigma of the LJ potential
+
+keyword m_bar 
+        arg. 1 max. number of time slices involved in a move
+
+keyword verme (this must the last keyword and specifies the run) 
+        arg. 1 number of blocks
+        arg. 2 index of block where averages are reset (to discard equilibration)
+        arg. 3 nstp, number of steps per block
+        arg. 4 nmoves, number of moves per step 
+               (measures are only taken after nmoves moves).
+
+***********************************************************
+************ changing parameters on the fly ***************
+***********************************************************
+
+Some parameters can be changed during the run by putting the corresponding
+keywords-values in a file called 'reset', e.g. the command
+
+   your_prompt$ echo mu sd 20.0 > reset
+
+will reset the chemical potential of particles of type "sd" to 20.0,
+starting from the next block.
+You can also change on the fly the values of m_bar,
+
+   your_prompt$ echo m_bar 10 > reset
+
+and c0, 
+
+   your_prompt$ echo c0 0.001 > reset
+
+When a parameter is changed, the cumulative averages are reset.
+
+You can also use the 'reset' file to reset the cumulative averages 
+without changing any parameter,
+
+   your_prompt$ echo reset > reset
+
+or cleanly stop the run,
+
+   your_prompt$ echo stop > reset
+
+(if you stop the run with ctrl-C some of the output files may be
+corrupted)
+
+***********************************************************
+************** output description *************************
+***********************************************************
+
+At the end of each block the code prints 
+on the standard output something like this:
+
+---------------------------------------------
+ ===>> block           23
+advance         6981. 0.492
+recede          5941. 0.569
+insert          5440. 0.218
+remove          1891. 0.637
+open            5544. 0.238
+close           1943. 0.669
+wiggle          5546. 0.601
+swap            4461. 0.336
+displace         121. 0.661
+  0.59000000000E+00  0.10000000000E+03  0.44769230769E+00 0.14E-01 zsector      
+  0.15075644494E+01  0.59000000000E+02  0.10419307154E+01 0.36E+00 etot         
+  0.51056971138E+01  0.59000000000E+02  0.50950211231E+01 0.34E+00 ekin         
+ -0.35981326645E+01  0.59000000000E+02 -0.40530904077E+01 0.10E+00 epot         
+  0.11934747201E+00  0.59000000000E+02  0.11591993093E+00 0.23E-01 pres         
+  0.75084745763E+01  0.59000000000E+02  0.78608247423E+01 0.96E-01 np           
+  0.37422620496E-01  0.59000000000E+02  0.39178751706E-01 0.48E-03 rho          
+  0.34180790960E-01  0.59000000000E+02  0.17632994154E-01 0.65E-02 rhos_he
+---------------------------------------------
+
+(i) the block index
+(ii) the number of attempted moves and the acceptance rate 
+     for each type of move.
+(iii) for various quantities (specified by the string in the last column):
+      first  column: block average
+      second column: statistical weight of this block average
+      third  column: cumulative average
+      fourth column: estimated statistical error (assuming independent blocks)
+
+Furthermore there are some output files:
+
+v_he_he       tabulated potential for the energy (filename specified in input)
+gofr          pair distribution function g(|r|) (for each block, block average, 
+              cumulative average, estimated error, statistical weight).
+              The histogram is on 200 points between 0 and L/2, with L
+              the (shortest) side of the simulation box.
+sofk          cumulative average of the static structure factor S(k).
+restart.coord a file which contains coordinates for restart
+restart.ind   a file which contains indices for restart (used only for restart 0)
+
+
+***********************************************************
+******************* Miscellaneous *************************
+***********************************************************
+
+* To compile:
+
+     your_prompt$ gfortran -O3 worm.f [-o name_of_the_executable]
+
+  (without the -o option the name of the executable is 'a.out';
+   without the -O3 option the code will run slower)
+
+* To use a gnuplot command file, say 'np.gp':
+
+     gnuplot> l 'np.gp'
+
+* To redirect the standard output to a file, say 'worm.out'
+
+     your_prompt$ ./a.out | tee worm.out
+
+  (this will send a copy of the output on the standard output and a copy on
+  'worm.out').
+
+* Why and how to use statforw.f:
+
+     statforw is similar to statfor, except it calculates WEIGHTED averages;
+     it reads TWO columns (i.e. data AND weights), and the output is similar
+     to statfor, with the addition of the effective number of points in the 
+     weighted average.
+     In the Worm Algorithm we need weighted averages because for each block
+     any (local or semilocal) physical property must be weighted by the number 
+     of configurations of the Z sector visited in that block.
+
+     Compile the code and optionally choose a name for the executable 
+     (here statforw.x):
+
+        your_prompt$ gfortran statforw.f -o statforw.x
+
+     Example: We assume we have redirected the standard output of the
+     simulation to the file 'worm.out' and we want to calculate mean and 
+     statistical error of the energy (the statistical errors given in the 
+     output file assume uncorrelated blocks, which may not be the case):
+
+        your_prompt$ grep etot worm.out | ./statforw.x
+
+     In the above line, the command "grep" selects the lines of file worm.out 
+     containing the string "etot", and the executable "./statforw.x" performs 
+     the statistical analysis of the given set of data/weigths.

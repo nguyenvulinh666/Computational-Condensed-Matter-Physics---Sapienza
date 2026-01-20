@@ -1,0 +1,161 @@
+
+     Program PWSCF v.7.5 starts on  9Jan2026 at  1:17:49 
+
+     This program is part of the open-source Quantum ESPRESSO suite
+     for quantum simulation of materials; please cite
+         "P. Giannozzi et al., J. Phys.:Condens. Matter 21 395502 (2009);
+         "P. Giannozzi et al., J. Phys.:Condens. Matter 29 465901 (2017);
+         "P. Giannozzi et al., J. Chem. Phys. 152 154105 (2020);
+          URL http://www.quantum-espresso.org", 
+     in publications or presentations arising from this work. More details at
+     http://www.quantum-espresso.org/quote
+
+     Serial version
+     2357 MiB available memory on the printing compute node when the environment starts
+
+     Waiting for input...
+     Reading input from standard input
+
+     Current dimensions of program PWSCF are:
+     Max number of different atomic species (ntypx) = 10
+     Max number of k-points (npk) =  40000
+     Max angular momentum in pseudopotentials (lmaxx) =  4
+
+     Atomic positions and unit cell read from directory:
+     ./tmp/si.cd.save/
+
+
+
+     G-vector sticks info
+     --------------------
+     sticks:   dense  smooth     PW     G-vecs:    dense   smooth      PW
+     Sum        1165    1165    349                26565    26565    4285
+
+     Using Slab Decomposition
+
+
+
+     bravais-lattice index     =            2
+     lattice parameter (alat)  =      10.3404  a.u.
+     unit-cell volume          =     276.4093 (a.u.)^3
+     number of atoms/cell      =            2
+     number of atomic types    =            1
+     number of electrons       =         8.00
+     number of Kohn-Sham states=           12
+     kinetic-energy cutoff     =      80.0000  Ry
+     charge density cutoff     =     320.0000  Ry
+     Exchange-correlation= PBE
+                           (   1   4   3   4   0   0   0)
+
+     celldm(1)=  10.340405  celldm(2)=   0.000000  celldm(3)=   0.000000
+     celldm(4)=   0.000000  celldm(5)=   0.000000  celldm(6)=   0.000000
+
+     crystal axes: (cart. coord. in units of alat)
+               a(1) = (  -0.500000   0.000000   0.500000 )  
+               a(2) = (   0.000000   0.500000   0.500000 )  
+               a(3) = (  -0.500000   0.500000   0.000000 )  
+
+     reciprocal axes: (cart. coord. in units 2 pi/alat)
+               b(1) = ( -1.000000 -1.000000  1.000000 )  
+               b(2) = (  1.000000  1.000000  1.000000 )  
+               b(3) = ( -1.000000  1.000000 -1.000000 )  
+
+
+     PseudoPot. # 1 for Si read from file:
+     ./PSEUDO/Si_ONCV_PBE_sr.upf
+     MD5 check sum: e543d271109d17c80368dfa7c482276d
+     Pseudo is Norm-conserving + core correction, Zval =  4.0
+     Generated using ONCVPSP code by D. R. Hamann
+     Using radial grid of 1510 points,  6 beta functions with: 
+                l(1) =   0
+                l(2) =   0
+                l(3) =   1
+                l(4) =   1
+                l(5) =   2
+                l(6) =   2
+
+     atomic species   valence    mass     pseudopotential
+     Si                4.00    28.08550     Si( 1.00)
+
+     48 Sym. Ops., with inversion, found (24 have fractional translation)
+
+
+
+   Cartesian axes
+
+     site n.     atom                  positions (alat units)
+         1        Si     tau(   1) = (   0.0000000   0.0000000   0.0000000  )
+         2        Si     tau(   2) = (  -0.2500000   0.2500000   0.2500000  )
+
+     number of k points=   256 (tetrahedron method)
+
+     Number of k-points >= 100: set verbosity='high' to print them.
+
+     Dense  grid:    26565 G-vectors     FFT dimensions: (  48,  48,  48)
+
+     Estimated max dynamical RAM per process >      17.27 MB
+
+     The potential is recalculated from file :
+     ./tmp/si.cd.save/charge-density
+
+     Starting wfcs are    8 randomized atomic wfcs +    4 random wfcs
+
+     Band Structure Calculation
+     Davidson diagonalization with overlap
+
+     ethr =  1.25E-08,  avg # of iterations = 32.3
+
+     total cpu time spent up to now is      122.5 secs
+
+     End of band structure calculation
+
+     Number of k-points >= 100: set verbosity='high' to print the bands.
+
+     the Fermi energy is     5.9964 ev
+     (compare with:     6.3130 eV, computed in scf)
+
+     Writing all to output data dir ./tmp/si.cd.save/ :
+     XML data file, pseudopotentials, collected wavefunctions
+
+     init_run     :      0.15s CPU      0.18s WALL (       1 calls)
+     electrons    :    117.19s CPU    120.28s WALL (       1 calls)
+
+     Called by init_run:
+     wfcinit      :      0.00s CPU      0.00s WALL (       1 calls)
+     potinit      :      0.03s CPU      0.05s WALL (       1 calls)
+     hinit0       :      0.05s CPU      0.06s WALL (       1 calls)
+
+     Called by electrons:
+     c_bands      :    117.10s CPU    120.20s WALL (       1 calls)
+     v_of_rho     :      0.03s CPU      0.04s WALL (       1 calls)
+
+     Called by c_bands:
+     init_us_2    :      0.11s CPU      0.15s WALL (     256 calls)
+     cegterg      :    111.50s CPU    114.41s WALL (     549 calls)
+
+     Called by *egterg:
+     cdiaghg      :      0.85s CPU      0.94s WALL (    8531 calls)
+     h_psi        :     95.47s CPU     98.06s WALL (    9080 calls)
+     g_psi        :      0.51s CPU      0.56s WALL (    8275 calls)
+
+     Called by h_psi:
+     h_psi:calbec :      6.74s CPU      6.87s WALL (    9080 calls)
+     vloc_psi     :     82.26s CPU     84.62s WALL (    9080 calls)
+                                        0.00s GPU  (    9080 calls)
+     add_vuspsi   :      6.14s CPU      6.30s WALL (    9080 calls)
+
+     General routines
+     calbec       :      6.64s CPU      6.83s WALL (    9080 calls)
+     fft          :      0.01s CPU      0.02s WALL (      11 calls)
+     fftw         :     74.47s CPU     76.97s WALL (  128972 calls)
+     davcio       :      0.05s CPU      0.08s WALL (     512 calls)
+
+
+     PWSCF        :   1m59.42s CPU   2m 2.71s WALL
+
+
+   This run was terminated on:   1:19:52   9Jan2026            
+
+=------------------------------------------------------------------------------=
+   JOB DONE.
+=------------------------------------------------------------------------------=

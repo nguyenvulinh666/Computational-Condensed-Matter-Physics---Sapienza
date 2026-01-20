@@ -1,0 +1,40 @@
+&CONTROL 
+   calculation = 'bands'
+   restart_mode = 'from_scratch' 
+   prefix = 'si.cd' 
+   tstress = .true. 
+   tprnfor = .true. 
+   pseudo_dir = './PSEUDO' 
+   outdir = './tmp' 
+&end 
+&SYSTEM 
+   ibrav = 2 
+   nat = 2 
+   ntyp = 1 
+   celldm(1) = 10.3404050887 
+   ecutwfc = 80, nbnd=12 
+   occupations = 'fixed'
+&end 
+&ELECTRONS 
+   conv_thr =  1e-06 
+   mixing_beta = 0.7 
+&end 
+ATOMIC_SPECIES 
+   Si  28.0855  Si_ONCV_PBE_sr.upf
+ATOMIC_POSITIONS crystal 
+   Si    0.0    0.0    0.0    
+   Si    0.25   0.25   0.25    
+K_POINTS (crystal_b)
+12
+0.000  0.000  0.000   40 ! Gamma
+0.500  0.000  0.500   40 ! X
+0.500  0.250  0.750   40 ! W
+0.375  0.375  0.750   40 ! K
+0.000  0.000  0.000   40 ! Gamma
+0.500  0.500  0.500   40 ! L
+0.625  0.250  0.625   40 ! U
+0.500  0.250  0.750   40 ! W
+0.500  0.500  0.500   40 ! L
+0.375  0.375  0.750   0  ! K (Weight 0 creates the break | )
+0.625  0.250  0.625   40 ! U (Start of new segment)
+0.500  0.000  0.500   40  ! X (End of path)

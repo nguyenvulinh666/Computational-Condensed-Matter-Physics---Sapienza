@@ -1,0 +1,28 @@
+&CONTROL
+  calculation = 'nscf'
+  restart_mode = 'from_scratch'
+  outdir = './tmp'
+  pseudo_dir = './PSEUDO'
+  prefix = '${prefix}'
+  tstress = .true.
+  tprnfor = .true.
+/
+&SYSTEM
+  ibrav = 2
+  celldm(1) = 6.656
+  nat = 2
+  ntyp = 2
+  ecutwfc = $ECUT
+  occupations = 'smearing', smearing='gauss', degauss=0.02,
+/
+&ELECTRONS
+  conv_thr = 1.0e-6
+/
+ATOMIC_SPECIES
+  Be  9.012182  Be_ONCV_PBE_sr.upf
+  N   14.0067   N_ONCV_PBE_sr.upf
+ATOMIC_POSITIONS crystal
+  Be   0.00   0.00   0.00
+  N    0.5    0.5    0.5
+K_POINTS automatic
+  $ks  $ks $ks 0 0 0

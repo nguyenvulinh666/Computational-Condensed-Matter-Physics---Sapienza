@@ -1,0 +1,12 @@
+ndim 2
+type he 6.0
+pbc 15.2 13.2
+mu he 0.5
+ntau 100
+restart -1
+c0 0.02  
+temperature 2.5
+v2 he he v_he_he lj 10.22 2.556
+m_bar 45 
+sofk 14
+verme 110 10 100 1000 

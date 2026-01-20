@@ -1,0 +1,9 @@
+  ndim 2                                                                        
+  type up 21 2.5000000000000001E-003 C1_20.up.x                                 
+  v2 up up C1_20.v 1                                                            
+  v0 -2.7175104885522847                                                        
+  u2 up up C1_20.u                                                              
+  pbc 8.1224039375904997 8.1224039375904997                                     
+  kspace C1_20.k                                                                
+  rhok up                                                                       
+  plane-wave up                                                                 

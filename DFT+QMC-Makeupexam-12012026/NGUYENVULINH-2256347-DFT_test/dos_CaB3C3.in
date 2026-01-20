@@ -1,0 +1,7 @@
+&dos
+prefix = 'CaB3C3',
+outdir = './tmp',
+emin = 3
+emax = 20
+DeltaE = 0.01
+&end

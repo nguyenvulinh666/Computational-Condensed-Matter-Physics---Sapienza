@@ -1,0 +1,6 @@
+ &BANDS                                                                
+ prefix = 'si.cd',                                                                  
+ outdir = './tmp/',                                                                     
+ filband = 'si.cd.bands.dat',                                                
+ lsym = .true.                                                                          
+ &end 

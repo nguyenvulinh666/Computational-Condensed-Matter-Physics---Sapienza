@@ -1,0 +1,7 @@
+&dos
+prefix = 'NaS',
+outdir = './tmp',
+emin = -5
+emax = 15
+DeltaE = 0.01
+&end
